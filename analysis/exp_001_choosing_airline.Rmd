@@ -1,0 +1,66 @@
+---
+title: "BoT Flights"
+author: "Alex Lindquist"
+date: "9/26/2022"
+output: html_notebook
+---
+
+Dealing with flight data from 2017 to 2022
+
+##Loading Packages
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+##Loading Data
+```{r}
+thisfile=here("data_raw","airline_data_2017.zip")
+df2017=read_csv(thisfile) %>% clean_names()
+
+thisfile=here("data_raw","airline_data_2018.zip")
+df2018=read_csv(thisfile) %>% clean_names()
+
+thisfile=here("data_raw","airline_data_2019.zip")
+df2019=read_csv(thisfile) %>% clean_names()
+
+thisfile=here("data_raw","airline_data_2020.zip")
+df2020=read_csv(thisfile) %>% clean_names()
+
+thisfile=here("data_raw","airline_data_2021.zip")
+df2021=read_csv(thisfile) %>% clean_names()
+
+thisfile=here("data_raw","airline_data_2022.zip")
+df2022=read_csv(thisfile) %>% clean_names()
+```
+
+
+##Graphing American Airlines Data 2017-2022
+```{r}
+df7=df2017 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df7 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+df8=df2018 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df8 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+df9=df2019 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df9 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+df10=df2020 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df10 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+df11=df2021 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df11 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+df12=df2022 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df12 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+
+
+```

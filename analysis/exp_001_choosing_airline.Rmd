@@ -36,8 +36,6 @@ df2022=read_csv(thisfile) %>% clean_names()
 ```
 
 ```{r}
-#extra <- rep(1, 378253)
-#df2018new = append(df2018.month, 1)
 df2018$month <- df2018$month + 12 * 1
 df2019$month <- df2019$month + 12 * 2
 df2020$month <- df2020$month + 12 * 3

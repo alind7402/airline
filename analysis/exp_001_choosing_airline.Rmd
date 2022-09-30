@@ -35,32 +35,48 @@ thisfile=here("data_raw","airline_data_2022.zip")
 df2022=read_csv(thisfile) %>% clean_names()
 ```
 
+```{r}
+#extra <- rep(1, 378253)
+#df2018new = append(df2018.month, 1)
+df2018$month <- df2018$month + 12 * 1
+df2019$month <- df2019$month + 12 * 2
+df2020$month <- df2020$month + 12 * 3
+df2021$month <- df2021$month + 12 * 4
+df2022$month <- df2022$month + 12 * 5
+
+df1 = bind_rows(df2017, df2018, df2019, df2020, df2021, df2022)
+df2 = df1 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
+
+df2 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+```
+
 
 ##Graphing American Airlines Data 2017-2022
 ```{r}
 df7=df2017 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df7 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df7 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 df8=df2018 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df8 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df8 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 df9=df2019 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df9 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df9 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 df10=df2020 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df10 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df10 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 df11=df2021 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df11 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df11 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 df12=df2022 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df12 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+#df12 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
 
 
 ```
+

@@ -2,7 +2,9 @@
 title: "BoT Flights"
 author: "Alex Lindquist"
 date: "9/26/2022"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 Dealing with flight data from 2017 to 2022
@@ -36,19 +38,19 @@ df2022=read_csv(thisfile) %>% clean_names()
 ```
 
 ```{r}
-<<<<<<< HEAD
+
+#adding multiples of 12 to each data frame past 2017 to better graph vs month
 df2018$month <- df2018$month + 12 * 1
 df2019$month <- df2019$month + 12 * 2
 df2020$month <- df2020$month + 12 * 3
 df2021$month <- df2021$month + 12 * 4
 df2022$month <- df2022$month + 12 * 5
 
-=======
->>>>>>> 827c16222b1f4c6ff283184008098a97e703c799
+
 df1 = bind_rows(df2017, df2018, df2019, df2020, df2021, df2022)
 df2 = df1 %>% filter(passengers>0,(origin=="LGA" | dest =="LGA") & unique_carrier_name == "American Airlines Inc.")
 
-df2 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers))
+df2 %>% ggplot(aes(month)) + geom_bar(aes(weight=passengers)) + ggtitle("American Airlines Passengers Per Month 2017-2022")
 ```
 
 
